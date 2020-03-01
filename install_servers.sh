@@ -9,14 +9,14 @@ clear
 #Nginx 1.5
 
 echo "Install Basic software (not servers)... "
-sudo apt-get install -y git software-properties-common build-essential
+sudo apt-get install -y git software-properties-common build-essential 
 
 #-- install PHP 5.5 ---
 LC_ALL=C.UTF-8 sudo add-apt-repository ppa:ondrej/PHP
 sudo apt-get update
 
 sudo apt-get install php5.5
-sudo apt-get install -y php5.5-mbstring php5.5-mcrypt php5.5-mysql php5.6-xml php-gd
+sudo apt-get install -y php5.5-mbstring php5.5-mcrypt php5.5-mysql php5.6-xml php-gd php-xml php-bcmath
 
 
 #--- Install MySQL ---
@@ -113,15 +113,86 @@ systemctl status nginx
 
 
 #*****************************************************************************************************************************************************************
+WebsitePath=/var/www/html
 
 #--- DVWA ---
 echo "Downloading Damn Vulnerable Web Application (DVWA)   http://www.dvwa.co.uk/  
 
 "
-cd /var/www/html/
+cd $WebsitePath/
 mkdir dvwa
 cd dvwa/
 git clone --recursive https://github.com/ethicalhack3r/DVWA.git
 
-
+sleep 2
+wait
 #--- Hackazon ---
+cd $WebsitePath/
+echo "Downloading Hackazon...  http://cybersecology.com/hackazon-review/  
+
+"
+cd $WebsitePath/
+mkdir hackazon
+cd hackazon/
+git clone --recursive https://github.com/rapid7/hackazon.git
+
+#--- Default home page ---
+cd $WebsitePath/
+echo "Downloading Nginx Config"
+wget -O "nginx_global_filetypes.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx_global_filetypes.conf"
+wget -O "nginx_global_logging.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx_global_logging.conf"
+wget -O "nginx_global_security.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx_global_security.conf"
+wget -O "nginx_global_tls.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx_global_tls.conf"
+wget -O "nginx.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx.conf"
+#-- sample page --
+wget -O "index.html" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/index.html"
+wget -O "custom_404.html" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/custom_404.html"
+wget -O "custom_50x.html" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/custom_50x.html"
+wget -O "nginx.png" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/nginx.png"
+wget -O "f5-logo-tagline-right-solid-rgb-1.png" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/f5-logo-tagline-right-solid-rgb-1.png"
+
+#-- Move Files --
+sudo mv "nginx_global_filetypes.conf" "/etc/nginx/snippets/nginx_global_filetypes.conf"
+sudo mv "nginx_global_logging.conf" "/etc/nginx/snippets/nginx_global_logging.conf"
+sudo mv "nginx_global_security.conf" "/etc/nginx/snippets/nginx_global_security.conf"
+sudo mv "nginx_global_tls.conf" "/etc/nginx/snippets/nginx_global_tls.conf"
+sudo mv "nginx.conf" "/etc/nginx/nginx.conf"
+#-- sample page --
+
+
+sudo mv "index.html" "$WebsitePath/index.html"
+sudo mv "custom_404.html" "$WebsitePath/custom_404.html"
+sudo mv "custom_50x.html" "$WebsitePath/custom_50x.html"
+sudo mv "nginx.png" "$WebsitePath/nginx.png"
+sudo mv "f5-logo-tagline-right-solid-rgb-1.png" "$WebsitePath/f5-logo-tagline-right-solid-rgb-1.png"
+
+wait
+echo "Nginx Config Download Complete"
+
+echo "Downloading Basic HTTP/HTTPS Website Config"
+#wget -O "site1.conf" "https://raw.githubusercontent.com/c2theg/srvBuilds/master/configs/site1.conf"
+wget -O "site1_80443.conf" "https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/site1_80_Unsecure.conf"
+wait
+sudo mv "site1_80443.conf" "/etc/nginx/sites-enabled/site1_80443.conf"
+wait
+if [ -s "/etc/nginx/sites-enabled/default" ]; then
+	echo "Deleting file  nginx default config "
+	rm "/etc/nginx/sites-enabled/default"
+fi
+wait
+echo "Basic HTTP/HTTPS Website Config Download Complete"
+
+touch /var/www/html/healthcheck.html
+echo "true" > "$WebsitePath/healthcheck.html"
+
+#---------------------------------------------------------------------------------------------------------
+sudo chmod -R 755 /media/data/ && sudo chown -R www-data:www-data /media/data/
+sudo chmod -R 755 /usr/share/nginx/html/ && sudo chown -R www-data:www-data /usr/share/nginx/html/
+
+wait
+echo "Restarting Nginx... "
+/etc/init.d/nginx restart
+
+echo "Restarting PHP-FPM... "
+/etc/init.d/php7.4-fpm restart
+echo "Done All! \r\n \r\n"

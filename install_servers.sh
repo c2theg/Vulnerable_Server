@@ -186,8 +186,7 @@ touch /var/www/html/healthcheck.html
 echo "true" > "$WebsitePath/healthcheck.html"
 
 #---------------------------------------------------------------------------------------------------------
-sudo chmod -R 755 /media/data/ && sudo chown -R www-data:www-data /media/data/
-sudo chmod -R 755 /usr/share/nginx/html/ && sudo chown -R www-data:www-data /usr/share/nginx/html/
+sudo chmod -R 755 $WebsitePath/ && sudo chown -R www-data:www-data $WebsitePath/
 
 wait
 echo "Restarting Nginx... "

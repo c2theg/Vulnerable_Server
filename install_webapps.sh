@@ -1,11 +1,15 @@
 #!/bin/sh
 clear
-# Version: 0.0.1
+# Version: 0.0.2
 # Updated: 3/3/2020
 #---------------------------
 
 #*****************************************************************************************************************************************************************
 WebsitePath=/var/www/html
+if [ ! -d $WebsitePath ]; then
+    mkdir $WebsitePath
+fi
+
 cd $WebsitePath/
 #--- DVWA ---
 #echo "Downloading Damn Vulnerable Web Application (DVWA)   http://www.dvwa.co.uk/  "

@@ -1,13 +1,19 @@
 #!/bin/sh
 clear
-# Version: 0.0.2
+# Version: 0.0.3
 # Updated: 3/3/2020
 #---------------------------
 
 #*****************************************************************************************************************************************************************
 WebsitePath=/var/www/html
-if [ ! -d $WebsitePath ]; then
-    mkdir $WebsitePath
+
+
+if [ ! -d /var/www/ ]; then
+    mkdir /var/www/
+fi
+
+if [ ! -d /var/www/html/ ]; then
+    mkdir /var/www/html/
 fi
 
 cd $WebsitePath/

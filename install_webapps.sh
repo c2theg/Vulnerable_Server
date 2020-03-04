@@ -32,11 +32,15 @@ echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 #docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
 
 #--- Cockpit ---
+#- give cockpit access to docker api
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+#----------------
 sudo -E apt-get -y install cockpit cockpit-docker
 sudo systemctl start cockpit
 sudo systemctl enable cockpit
-echo "Browse (With Firefox) to: http://<LOCAL IP>:9090 "
-
+echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "
 
 #--- General Docker Commands ---
 # Start container:

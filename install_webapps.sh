@@ -1,29 +1,27 @@
 #!/bin/sh
 clear
-# Version: 0.0.4
+# Version: 0.0.6
 # Updated: 3/3/2020
 #---------------------------
-#--- Hackazon ---
-#echo "Downloading Hackazon...  http://cybersecology.com/hackazon-review/  "
-#cd ..
-#mkdir hackazon
-#cd hackazon/
-#git clone --recursive https://github.com/rapid7/hackazon.git
+# https://docs.docker.com/engine/reference/commandline/run/
 
-#--- Juice Shop ---
-# https://owasp.org/www-project-juice-shop/
-#mkdir juiceshop/
-
-#curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-#sudo apt-get install -y nodejs
-
-#git clone https://github.com/bkimminich/juice-shop.git
-#cd juice-shop
-#npm install
-#npm start
-#Browse to http://localhost:3000 
-
-#--- Docker version ---
-# https://registry.hub.docker.com/r/bkimminich/juice-shop
+#--- Juice Shop --- 
+# Docker  --- https://registry.hub.docker.com/r/bkimminich/juice-shop
+echo "Juice Shop - https://owasp.org/www-project-juice-shop/ "
 docker pull bkimminich/juice-shop
 docker run --rm -p 3000:3000 bkimminich/juice-shop
+echo "Browse to site: http://<Local IP>:3000 \r\n \r\n"
+
+
+#--- Hackazon ---  http://cybersecology.com/hackazon-review/ 
+echo "Downloading Hackazon...  https://hub.docker.com/r/ianwijaya/hackazon  "
+docker pull ianwijaya/hackazon
+sudo docker run --name hackazon1 -d -p 8081:3001 ianwijaya/hackazon
+echo "Browse to site: http://<Local IP>:3001 \r\n \r\n"
+
+
+#--- DVWA --- 
+echo "DVWA - https://hub.docker.com/r/vulnerables/web-dvwa/ "
+docker pull vulnerables/web-dvwa
+docker run --rm -it -p 80:3002 vulnerables/web-dvwa
+echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"

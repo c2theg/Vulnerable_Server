@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
-# Version: 0.0.6
-# Updated: 3/3/2020
+# Version: 0.0.7
+# Updated: 3/4/2020
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
 
@@ -27,7 +27,7 @@ docker run --rm -it -p 80:3002 vulnerables/web-dvwa
 echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 
 
-#-- Portainer.io ---
+#-- Portainer.io  https://www.portainer.io/ ---
 #docker pull portainer/portainer
 #docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
 

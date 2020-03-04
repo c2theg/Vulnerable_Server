@@ -25,3 +25,26 @@ echo "DVWA - https://hub.docker.com/r/vulnerables/web-dvwa/ "
 docker pull vulnerables/web-dvwa
 docker run --rm -it -p 80:3002 vulnerables/web-dvwa
 echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
+
+
+#-- Portainer.io ---
+#docker pull portainer/portainer
+#docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
+
+#--- Cockpit ---
+sudo -E apt-get -y install cockpit cockpit-docker
+sudo systemctl start cockpit
+sudo systemctl enable cockpit
+echo "Browse (With Firefox) to: http://<LOCAL IP>:9090 "
+
+
+#--- General Docker Commands ---
+# Start container:
+#   docker run ...
+
+# Stop container:
+#   docker stop <Container ID>
+
+# Remove container image:
+#   docker image rm <Container ID> -f
+

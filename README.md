@@ -7,9 +7,10 @@ wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/install_d
 ```
 
 2) Installs:
-    * Juice-Shop ( https://owasp.org/www-project-juice-shop/ ) container, runs on http://<Local_IP>:3000
+    * Juice-Shop ( https://owasp.org/www-project-juice-shop/ ) container, runs on http://<Local_IP>:80
     * Hackazon ( http://cybersecology.com/hackazon-review/ ) container, runs on http://<Local_IP>:3001
     * DVWA ( http://www.dvwa.co.uk/ ) container, runs on http://<Local_IP>:3002
+    * Bind DNS ( https://hub.docker.com/r/sameersbn/bind ) container (along with Webmin http://<Local_IP>:10000) 
     * Cockpit ( https://cockpit-project.org/ ), on http://<Local_IP>:9090  (For ADMIN and monitoring)
 
 ```

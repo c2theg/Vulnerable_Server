@@ -9,7 +9,7 @@ clear
 # Docker  --- https://registry.hub.docker.com/r/bkimminich/juice-shop
 echo "Juice Shop - https://owasp.org/www-project-juice-shop/ "
 docker pull bkimminich/juice-shop
-docker run --rm -p 3000:3000 bkimminich/juice-shop
+docker run --rm -p 3000:80 bkimminich/juice-shop
 echo "Browse to site: http://<Local IP>:3000 \r\n \r\n"
 
 
@@ -25,6 +25,15 @@ echo "DVWA - https://hub.docker.com/r/vulnerables/web-dvwa/ "
 docker pull vulnerables/web-dvwa
 docker run --rm -it -p 80:3002 vulnerables/web-dvwa
 echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
+
+#--- Bind DNS ---
+echo "Bind DNS - https://hub.docker.com/r/sameersbn/bind "
+docker pull sameersbn/bind:latest
+docker run -d --name=bind --dns=127.0.0.1 \
+  --publish=53:53/udp --publish 53:53/tcp --publish=10000:10000/tcp \
+  --volume=/srv/docker/bind:/data \
+  --env='ROOT_PASSWORD=Password123$' \
+  sameersbn/bind:latest
 
 
 #-- Portainer.io  https://www.portainer.io/ ---

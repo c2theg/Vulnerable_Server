@@ -1,40 +1,43 @@
 #!/bin/sh
 clear
-# Version: 0.0.8
+# Version: 0.0.9
 # Updated: 3/5/2020
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
+
+echo "Installing all docker containers! "
 
 #--- Juice Shop --- 
 # Docker  --- https://registry.hub.docker.com/r/bkimminich/juice-shop
 echo "Juice Shop - https://owasp.org/www-project-juice-shop/ "
 docker pull bkimminich/juice-shop
-docker run --rm -p 3000:80 bkimminich/juice-shop
+docker run --rm -p 3000:80 bkimminich/juice-shop &
 echo "Browse to site: http://<Local IP>:3000 \r\n \r\n"
 
 
 #--- Hackazon ---  http://cybersecology.com/hackazon-review/ 
 echo "Downloading Hackazon...  https://hub.docker.com/r/ianwijaya/hackazon  "
 docker pull ianwijaya/hackazon
-sudo docker run --name hackazon1 -d -p 8081:3001 ianwijaya/hackazon
+sudo docker run --name hackazon1 -d -p 8081:3001 ianwijaya/hackazon &
 echo "Browse to site: http://<Local IP>:3001 \r\n \r\n"
 
 
 #--- DVWA --- 
 echo "DVWA - https://hub.docker.com/r/vulnerables/web-dvwa/ "
 docker pull vulnerables/web-dvwa
-docker run --rm -it -p 80:3002 vulnerables/web-dvwa
+docker run --rm -it -p 80:3002 vulnerables/web-dvwa &
 echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 
-#--- Bind DNS ---
+#--- Bind DNS --- http://www.damagehead.com/blog/2015/04/28/deploying-a-dns-server-using-docker/
 echo "Bind DNS - https://hub.docker.com/r/sameersbn/bind "
 docker pull sameersbn/bind:latest
-docker run -d --name=bind --dns=127.0.0.1 \
+docker run -d --dns=127.0.0.1 \
   --publish=53:53/udp --publish 53:53/tcp --publish=10000:10000/tcp \
   --volume=/srv/docker/bind:/data \
   --env='ROOT_PASSWORD=Password123$' \
-  sameersbn/bind:latest
+  sameersbn/bind:latest &
 
+echo "You can access Webmin from: https://<Local IP>:10000"
 
 #-- Portainer.io  https://www.portainer.io/ ---
 docker pull portainer/portainer

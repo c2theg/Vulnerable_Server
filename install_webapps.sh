@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
-# Version: 0.0.7
-# Updated: 3/4/2020
+# Version: 0.0.8
+# Updated: 3/5/2020
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
 
@@ -28,8 +28,9 @@ echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 
 
 #-- Portainer.io  https://www.portainer.io/ ---
-#docker pull portainer/portainer
+docker pull portainer/portainer
 #docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
+
 
 #--- Cockpit ---
 #- give cockpit access to docker api
@@ -42,12 +43,19 @@ sudo systemctl start cockpit
 sudo systemctl enable cockpit
 echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "
 
+
 #--- General Docker Commands ---
+# List Containers:
+#   docker ps
+
 # Start container:
 #   docker run ...
 
 # Stop container:
 #   docker stop <Container ID>
+
+# list container images
+#   docker images
 
 # Remove container image:
 #   docker image rm <Container ID> -f

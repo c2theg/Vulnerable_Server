@@ -23,7 +23,7 @@ wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/install_w
 
 <h2>PBX</h2>
 
-Some people have asked for PBX (FreePBX). Since not everyone has, I thought I would include it as seperate commands, bellow. I have not testing this as of right now, just wanted to make it available. When i do get a chance, I will update this asap. 
+Some people have asked for PBX ( FreePBX / Asterisk ). Since not everyone has, I thought I would include it as seperate commands, below. I have not tested this as of right now. I just wanted to make it available. When i do get a chance, I will update this asap. 
 
 tiredofit/freepbx ( https://hub.docker.com/r/tiredofit/freepbx )
 

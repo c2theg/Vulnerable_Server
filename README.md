@@ -17,4 +17,32 @@ wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/install_d
 wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/install_webapps.sh && chmod u+x install_webapps.sh  && ./install_webapps.sh
 ```
 
-3) Browse to: http://<Local_IP>:3000 - 3002
+3) Browse to: http://<Local_IP>:300*
+
+<hr>
+
+<h2>PBX</h2>
+
+Some people have asked for PBX (FreePBX). Since not everyone has, I thought I would include it as seperate commands, bellow. I have not testing this as of right now, just wanted to make it available. When i do get a chance, I will update this asap. 
+
+tiredofit/freepbx ( https://hub.docker.com/r/tiredofit/freepbx )
+
+```
+docker pull tiredofit/freepbx:latest
+```
+
+Start the container: 
+
+```
+docker run -d \
+  --name freepbx \
+  --restart=always \
+  --net=host \
+  --privileged \
+  -v /docker/freepbx/certs:/certs \
+  -v /docker/freepbx/www:/www/freepbx \
+  -v /docker/freepbx/log:/var/log/ \
+  -v /docker/freepbx/data:/data \
+  -e DB_EMBEDDED=TRUE \
+  tiredofit/freepbx
+```

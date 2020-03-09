@@ -50,7 +50,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 #----------------
-sudo -E apt-get -y install cockpit cockpit-docker
+sudo -E apt-get -y install cockpit cockpit-docker iproute
 sudo systemctl start cockpit
 sudo systemctl enable cockpit
 echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "

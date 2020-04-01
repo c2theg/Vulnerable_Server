@@ -41,5 +41,5 @@ echo "\r\n \r\n"
 
 
 wait
-sleep 8
+sleep 5
 docker ps

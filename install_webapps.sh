@@ -1,9 +1,10 @@
 #!/bin/sh
 clear
-# Version: 0.0.9
-# Updated: 3/5/2020
+# Version: 0.0.10
+# Updated: 3/31/2020
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
+wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/start_containers.sh && chmod u+x start_containers.sh
 
 echo "Installing all docker containers! "
 
@@ -54,7 +55,6 @@ sudo -E apt-get -y install cockpit cockpit-docker
 sudo systemctl start cockpit
 sudo systemctl enable cockpit
 echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "
-
 
 
 sudo -E apt-get -y iproute2

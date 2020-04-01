@@ -1,6 +1,6 @@
 #!/bin/sh
-# Version: 0.0.4
-# Updated: 3/31/2020
+# Version: 0.0.5
+# Updated: 4/1/2020
 #---------------------------
 echo "Starting Juice Shop... \r\n "
 docker run --rm -p 3000:81 bkimminich/juice-shop &
@@ -40,4 +40,6 @@ echo "Cockpit is always avaiable at: http://<LOCAL IP>:9090"
 echo "\r\n \r\n"
 
 
+wait
+sleep 8
 docker ps

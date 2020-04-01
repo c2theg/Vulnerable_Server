@@ -1,15 +1,15 @@
 #!/bin/sh
-# Version: 0.0.3
+# Version: 0.0.4
 # Updated: 3/31/2020
 #---------------------------
 echo "Starting Juice Shop... \r\n "
-docker run --rm -p 3000:80 bkimminich/juice-shop &
+docker run --rm -p 3000:81 bkimminich/juice-shop &
 echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP> \r\n \r\n"
 
 
 echo "Starting Hackazon... \r\n"
-sudo docker run --name hackazon1 -d -p 8081:3001 ianwijaya/hackazon &
+sudo docker run -d -p 8081:3001 ianwijaya/hackazon &
 echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP>:3001 \r\n \r\n"
 
@@ -38,5 +38,6 @@ echo "Browse to Portainer from: https://<Local IP>:9000"
 echo "\r\n \r\n"
 echo "Cockpit is always avaiable at: http://<LOCAL IP>:9090"
 echo "\r\n \r\n"
+
 
 docker ps

@@ -8,16 +8,17 @@ echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP> \r\n \r\n"
 
 
-echo "Starting Hackazon... \r\n "
+echo "Starting Hackazon... \r\n"
 sudo docker run --name hackazon1 -d -p 8081:3001 ianwijaya/hackazon &
 echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP>:3001 \r\n \r\n"
 
 
-echo "Starting DVWA... \r\n "
+echo "Starting DVWA... \r\n"
 docker run --rm -it -p 80:3002 vulnerables/web-dvwa &
 echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
+
 
 echo "Starting Bind DNS... \r\n"
 docker run -d --dns=127.0.0.1 \
@@ -25,10 +26,14 @@ docker run -d --dns=127.0.0.1 \
   --volume=/srv/docker/bind:/data \
   --env='ROOT_PASSWORD=Password123$' \
   sameersbn/bind:latest &
-
-
 echo "\r\n \r\n"  
 echo "Browse to Webmin from: https://<Local IP>:10000"
+
+
+echo "Starting Portainer... \r\n"
+docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
+echo "Browse to Portainer from: https://<Local IP>:9000"
+
 
 echo "\r\n \r\n"
 echo "Cockpit is always avaiable at: http://<LOCAL IP>:9090"

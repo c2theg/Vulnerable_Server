@@ -42,7 +42,7 @@ echo "You can access Webmin from: https://<Local IP>:10000"
 
 #-- Portainer.io  https://www.portainer.io/ ---
 docker pull portainer/portainer
-#docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
+docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
 
 
 #--- Cockpit ---
@@ -73,4 +73,3 @@ sudo -E apt-get -y iproute2
 
 # Remove container image:
 #   docker image rm <Container ID> -f
-

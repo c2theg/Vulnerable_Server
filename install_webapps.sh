@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
-# Version: 0.0.11
-# Updated: 4/1/2020
+# Version: 0.0.12
+# Updated: 4/10/2020
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
 wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/start_containers.sh && chmod u+x start_containers.sh
@@ -29,6 +29,12 @@ docker pull vulnerables/web-dvwa
 #docker run --rm -it -p 80:3002 vulnerables/web-dvwa &
 #echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 
+
+#--- Wordpress ---
+echo "Wordpress - https://hub.docker.com/_/wordpress "
+docker pull wordpress:latest
+
+
 #--- Bind DNS --- http://www.damagehead.com/blog/2015/04/28/deploying-a-dns-server-using-docker/
 echo "Bind DNS - https://hub.docker.com/r/sameersbn/bind "
 docker pull sameersbn/bind:latest
@@ -39,14 +45,22 @@ docker pull sameersbn/bind:latest
 #  sameersbn/bind:latest &
 #echo "You can access Webmin from: https://<Local IP>:10000"
 
+
+#--- Mosquitto ---
+echo "Mosquitto - https://hub.docker.com/_/eclipse-mosquitto "
+docker pull eclipse-mosquitto:latest
+
+
+#-- Speedtest ---
+echo "LibreSpeed - https://hub.docker.com/r/adolfintel/speedtest "
+docker pull adolfintel/speedtest
+
+
 #-- Portainer.io  https://www.portainer.io/ ---
 docker pull portainer/portainer
 #docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer
 
 
-echo "\r\n \r\n"
-
-./start_containers.sh
 #--- Cockpit ---
 #- give cockpit access to docker api
 sudo groupadd docker
@@ -60,7 +74,9 @@ echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "
 
 
 sudo -E apt-get -y iproute2
+echo "
 #--- General Docker Commands ---
+
 # List Containers:
 #   docker ps
 
@@ -75,3 +91,12 @@ sudo -E apt-get -y iproute2
 
 # Remove container image:
 #   docker image rm <Container ID> -f
+
+
+--------------------------------------------------------
+
+Starting Containers...
+
+"
+
+./start_containers.sh

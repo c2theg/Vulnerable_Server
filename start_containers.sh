@@ -62,7 +62,7 @@ docker run -d --restart=always \
   --publish 853:53/tcp --publish 853:53/udp --publish 10000:10000/tcp \
   --volume /srv/docker/bind:/data \
   --env='ROOT_PASSWORD=Password123$' \
-  sameersbn/bind:latest
+  sameersbn/bind:latest &
  
 echo "
 

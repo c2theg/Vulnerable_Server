@@ -1,5 +1,5 @@
 #!/bin/sh
-# Version: 0.0.10
+# Version: 0.0.11
 # Updated: 4/15/2020
 #--------------------------------------------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
@@ -17,7 +17,7 @@ echo "Browse to Portainer from: https://<Local IP>:9000"
 
 
 echo "Starting Juice Shop (80) ... \r\n "
-docker run --rm -p 80:3000 bkimminich/juice-shop &
+docker run -d --rm -p 80:3000 bkimminich/juice-shop &
 echo "
 
 
@@ -28,7 +28,7 @@ sleep 5
 
 
 echo "Starting DVWA (81)... \r\n"
-docker run --rm -it -p 81:80 vulnerables/web-dvwa &
+docker run -d --rm -it -p 81:80 vulnerables/web-dvwa &
 echo "
 
 
@@ -39,7 +39,7 @@ sleep 5
 
 
 echo "Starting Wordpress (82)... \r\n"
-docker run --rm -p 82:80 wordpress &
+docker run -d --rm -p 82:80 wordpress &
 echo "
 
 
@@ -48,7 +48,7 @@ echo "Browse to site: http://<Local IP>:82 \r\n \r\n"
 sleep 5
 
 echo "Starting Hackazon (8081)... \r\n"
-docker run --rm -p 8081:80 ianwijaya/hackazon &
+docker run -d --rm -p 8081:80 ianwijaya/hackazon &
 echo "
 
 

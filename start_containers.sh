@@ -21,7 +21,7 @@ echo "Browse to site: http://<Local IP>:3002 \r\n \r\n"
 
 
 echo "Starting Wordpress... \r\n"
-docker run --name wordpress1 -p 8080:82 -d wordpress &
+docker run -p 8080:82 -d wordpress &
 echo "\r\n \r\n"
 echo "Browse to site: http://<Local IP>:82 \r\n \r\n"
 

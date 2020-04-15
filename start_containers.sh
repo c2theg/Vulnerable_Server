@@ -1,10 +1,14 @@
 #!/bin/sh
-# Version: 0.0.9
+# Version: 0.0.10
 # Updated: 4/15/2020
 #--------------------------------------------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
 #
+#   Stop All containers
+#     docker stop $(docker ps -a -q)
 #
+#   Remove all containers
+#     docker rm $(docker ps -a -q)
 #--------------------------------------------------------------
 
 echo "Starting Portainer (9000)... \r\n"

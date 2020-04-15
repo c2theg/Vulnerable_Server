@@ -1,6 +1,6 @@
 #!/bin/sh
-# Version: 0.0.6
-# Updated: 4/10/2020
+# Version: 0.0.7
+# Updated: 4/15/2020
 #---------------------------
 echo "Starting Juice Shop... \r\n "
 docker run --rm -p 3000:81 bkimminich/juice-shop &

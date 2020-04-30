@@ -1,7 +1,12 @@
 #!/bin/sh
-# Version: 0.0.11
+# Version: 0.0.12
 # Updated: 4/15/2020
 #--------------------------------------------------------------
+#  Add to startup:
+#     crontab -e
+#     @reboot /home/ubuntu/containers/start_containers.sh >> /var/log/start_containers.log 2>&1
+#
+#
 # https://docs.docker.com/engine/reference/commandline/run/
 #
 #   Stop All containers

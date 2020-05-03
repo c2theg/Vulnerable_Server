@@ -4,7 +4,10 @@
 #--------------------------------------------------------------
 #  Add to startup:
 #     crontab -e
-#     @reboot /home/ubuntu/containers/start_containers.sh >> /var/log/start_containers.log 2>&1
+#    @reboot /home/ubuntu/containers/start_containers.sh >> /var/log/start_containers.log 2>&1
+#
+#  Or add the following to the docker run command (without the --rm flag):
+#       --restart=always
 #
 #
 # https://docs.docker.com/engine/reference/commandline/run/
@@ -17,12 +20,12 @@
 #--------------------------------------------------------------
 
 echo "Starting Portainer (9000)... \r\n"
-docker run -d --rm -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" portainer/portainer &
+docker run -d -p 9000:9000 -v "/var/run/docker.sock:/var/run/docker.sock" --restart=always --name portainer portainer/portainer &
 echo "Browse to Portainer from: https://<Local IP>:9000"
 
 
 echo "Starting Juice Shop (80) ... \r\n "
-docker run -d --rm -p 80:3000 bkimminich/juice-shop &
+docker run -d -p 80:3000 --restart=always --name juiceshop bkimminich/juice-shop &
 echo "
 
 

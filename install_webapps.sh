@@ -1,7 +1,7 @@
 #!/bin/sh
 clear
-# Version: 0.0.12
-# Updated: 4/10/2020
+# Version: 0.0.13
+# Updated: 7/27/2021
 #---------------------------
 # https://docs.docker.com/engine/reference/commandline/run/
 wget https://raw.githubusercontent.com/c2theg/Vulnerable_Server/master/start_containers.sh && chmod u+x start_containers.sh
@@ -67,13 +67,13 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 #----------------
-sudo -E apt-get -y install cockpit cockpit-docker
+sudo -E apt-get -y install cockpit
 sudo systemctl start cockpit
 sudo systemctl enable cockpit
 echo "Browse (with Firefox) to: http://<LOCAL IP>:9090 "
 
 
-sudo -E apt-get -y iproute2
+sudo -E apt-get install -y iproute2
 echo "
 #--- General Docker Commands ---
 
